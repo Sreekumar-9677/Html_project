@@ -1,9 +1,10 @@
-# Use official NGINX web server image
 FROM nginx:alpine
 
-# Remove default NGINX static files
-RUN rm -rf /usr/share/nginx/html/*
+# Remove default nginx config
+RUN rm /etc/nginx/conf.d/default.conf
 
-# Copy your HTML and CSS files to NGINX's public directory
+# Add custom config that listens on port 8080
+COPY nginx.conf /etc/nginx/conf.d/
+
+# Copy HTML and CSS files to the web root
 COPY . /usr/share/nginx/html
-
