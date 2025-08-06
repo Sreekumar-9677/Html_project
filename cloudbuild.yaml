@@ -1,0 +1,30 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build',
+      '-t',
+      'us-central1-docker.pkg.dev/omega-terrain-450302-m3/REPO-ID/html-site',
+      '.'
+    ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'push',
+      'us-central1-docker.pkg.dev/omega-terrain-450302-m3/REPO-ID/html-site'
+    ]
+
+# Optional: Deploy to Cloud Run
+# Uncomment if you want automatic deploy
+#  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+#    entrypoint: gcloud
+#    args:
+#      [
+#        'run', 'deploy', 'html-site',
+#        '--image', 'us-central1-docker.pkg.dev/PROJECT-ID/REPO-ID/html-site',
+#        '--region', 'us-central1',
+#        '--platform', 'managed',
+#        '--allow-unauthenticated'
+#      ]
+
+images:
+  - 'us-central1-docker.pkg.dev/omega-terrain-450302-m3/REPO-ID/html-site'
